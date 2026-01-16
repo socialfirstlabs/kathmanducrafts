@@ -1,178 +1,606 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>Kathmandu Crafts | Coming Soon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathmandu Crafts | Inspired by Tradition. Crafted with Passion.</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Custom Styles -->
     <style>
         body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: #f6f2ec;
-            color: #2c2c2c;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Lato', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom Animation for Blob effect in About section */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
         }
 
-        .page {
-            max-width: 1100px;
-            width: 100%;
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .logo-section {
-            text-align: center;
-        }
-
-        .logo-section img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .tagline {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: #8a5a2b;
-            letter-spacing: 0.5px;
-        }
-
-        .content h1 {
-            font-size: 2.4rem;
-            margin-bottom: 15px;
-        }
-
-        .content p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .divider {
-            width: 70px;
-            height: 3px;
-            background: #c6923a;
-            margin: 20px 0;
-            border-radius: 2px;
-        }
-
-        .contact h2 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .contact ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contact li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        .contact li span {
-            font-weight: 600;
-            margin-right: 8px;
-        }
-
-        .highlight {
-            margin-top: 25px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #c6923a;
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        @media (max-width: 900px) {
-            .card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .divider {
-                margin: 20px auto;
-            }
-
-            .contact li {
-                justify-content: center;
-            }
+        /* Selection Color */
+        ::selection {
+            background-color: #7f1d1d; /* red-900 */
+            color: white;
         }
     </style>
 </head>
-<body>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-red-900 selection:text-white">
 
-<div class="page">
-    <div class="card">
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 py-5 bg-transparent">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            
+            <!-- Logo Section -->
+            <a href="#" class="flex items-center gap-2 group">
+                <!-- Main Logo Image -->
+                <img 
+                    id="nav-logo-img"
+                    src="img/KathmanduCrafts_Logo.png" 
+                    alt="Kathmandu Crafts" 
+                    class="h-12 md:h-14 w-auto object-contain transition-all duration-300 drop-shadow-lg filter brightness-100"
+                    onerror="this.style.display='none'; document.getElementById('nav-logo-fallback').style.display='flex';"
+                />
+                
+                <!-- Fallback Logo (Hidden by default) -->
+                <div id="nav-logo-fallback" class="hidden items-center gap-2">
+                    <div id="fallback-icon-bg" class="w-8 h-8 rounded-sm rotate-45 flex items-center justify-center bg-white text-red-900 transition-colors duration-300">
+                        <span class="block -rotate-45 font-serif font-bold">K</span>
+                    </div>
+                    <div id="fallback-text" class="font-serif text-xl tracking-wide text-white transition-colors duration-300">
+                        Kathmandu <span class="font-light">Crafts</span>
+                    </div>
+                </div>
+            </a>
 
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <img src="logo.png" alt="Kathmandu Crafts Logo">
-            <div class="tagline">Inspired by Tradition, Crafted by Passion</div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium tracking-wide">
+                <a href="#collections" class="nav-link text-stone-200 hover:text-amber-600 transition-colors">Collections</a>
+                <a href="#our-story" class="nav-link text-stone-200 hover:text-amber-600 transition-colors">Our Story</a>
+                <a href="#values" class="nav-link text-stone-200 hover:text-amber-600 transition-colors">Values</a>
+                
+                <!-- Contact Button -->
+                <a href="#contact" id="nav-shop-btn" class="inline-flex items-center justify-center px-5 py-2 transition-all duration-300 font-serif tracking-wider text-xs uppercase bg-amber-600 text-white hover:bg-amber-700 shadow-md">
+                    Contact Us
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white transition-colors duration-300">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
 
-        <!-- Content Section -->
-        <div class="content">
-            <h1>Coming Soon</h1>
-            <div class="divider"></div>
-            <p>
-                We are currently building our online home to showcase authentic,
-                handcrafted creations inspired by Nepal’s rich heritage.
-                Our website will be launching soon.
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl py-8 px-6 flex flex-col gap-6 border-t border-stone-100">
+            <a href="#collections" class="text-lg font-serif text-stone-800 mobile-link">Collections</a>
+            <a href="#our-story" class="text-lg font-serif text-stone-800 mobile-link">Our Story</a>
+            <a href="#values" class="text-lg font-serif text-stone-800 mobile-link">Values</a>
+            <!-- <a href="#contact" class="text-lg font-serif text-stone-800 mobile-link">Contact</a> -->
+            <a href="#contact" id="nav-shop-btn" class="w-full inline-flex items-center justify-center px-8 py-3 transition-all duration-300 font-serif tracking-wider text-sm uppercase bg-red-900 text-stone-50 hover:bg-red-800 border border-transparent shadow-md hover:shadow-lg">
+                Contact Us
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <header class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 z-0">
+            <img src="img/nepal.jpg" alt="Himalayan Landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-stone-900/40 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-transparent to-stone-900/30"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center pt-20">
+            <div class="inline-block mb-6 px-4 py-1 border border-white/30 rounded-full bg-white/10 backdrop-blur-sm">
+                <span class="text-amber-200 text-xs font-bold tracking-[0.2em] uppercase">Ethically Sourced from Nepal</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-tight mb-6 drop-shadow-lg">
+                Inspired by Tradition. <br />
+                <span class="italic text-amber-100">Crafted with Passion.</span>
+            </h1>
+            
+            <p class="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Authentic, handcrafted spiritual and cultural treasures, sourced from Nepal’s sacred heritage and delivered worldwide with care.
             </p>
 
-            <div class="contact">
-                <h2>Contact Us</h2>
-                <ul>
-                    <li><span>📞</span> +61 499 926 276 (WhatsApp / Viber)</li>
-                    <li><span>✉️</span> kathmanducrafts.au@gmail.com</li>
-                    <li><span>🌐</span> www.kathmandu-crafts.com</li>
-                    <li><span>📍</span> Kathmandu Crafts, Australia</li>
-                    <li><span>📱</span> @kathmanducrafts</li>
-                </ul>
-            </div>
-
-            <div class="highlight">
-                🚚 Australia-Wide Free Delivery
-            </div>
-
-            <div class="footer">
-                © 2026 Kathmandu Crafts. All rights reserved.
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#collections" class="inline-flex items-center justify-center px-8 py-3 transition-all duration-300 font-serif tracking-wider text-sm uppercase bg-amber-600 text-white hover:bg-amber-700 shadow-md">
+                    Explore Our Collections <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 transition-all duration-300 font-serif tracking-wider text-sm uppercase bg-transparent text-white border border-white hover:bg-white hover:text-red-900">
+                    Contact Us to Shop
+                </a>
             </div>
         </div>
+    </header>
 
+    <!-- 2. TRUST & VALUE STRIP -->
+    <div class="bg-white py-8 border-b border-stone-100 relative z-20 -mt-2 shadow-sm">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Trust Items -->
+                <div class="flex flex-col items-center gap-2 text-stone-600">
+                    <div class="p-3 rounded-full bg-stone-100 text-red-900 mb-2"><i data-lucide="gem" class="w-5 h-5"></i></div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-center">Ethically Sourced</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 text-stone-600">
+                    <div class="p-3 rounded-full bg-stone-100 text-red-900 mb-2"><i data-lucide="heart" class="w-5 h-5"></i></div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-center">Handmade by Artisans</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 text-stone-600">
+                    <div class="p-3 rounded-full bg-stone-100 text-red-900 mb-2"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-center">Australian Based</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 text-stone-600">
+                    <div class="p-3 rounded-full bg-stone-100 text-red-900 mb-2"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-center">Worldwide Shipping</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
+    <!-- 3. WHY KATHMANDU CRAFTS -->
+    <section id="values" class="py-20 md:py-28 bg-stone-50">
+        <div class="container mx-auto px-6">
+            <div class="mb-12 text-center">
+                <span class="block text-xs font-bold tracking-[0.2em] uppercase mb-3 text-amber-700">The Spirit of the Himalayas</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-stone-800">Why Kathmandu Crafts?</h2>
+                <div class="mt-4 h-1 w-16 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm group text-center h-full">
+                    <div class="inline-flex p-4 rounded-full bg-stone-50 text-amber-700 mb-6 group-hover:bg-red-900 group-hover:text-white transition-colors">
+                        <i data-lucide="shield-check" class="w-7 h-7" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-stone-800 mb-3">Authenticity</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm">Genuine artifacts sourced directly from the heart of the Himalayas.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm group text-center h-full">
+                    <div class="inline-flex p-4 rounded-full bg-stone-50 text-amber-700 mb-6 group-hover:bg-red-900 group-hover:text-white transition-colors">
+                        <i data-lucide="gem" class="w-7 h-7" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-stone-800 mb-3">Craftsmanship</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm">Masterfully created by skilled artisans preserving ancient techniques.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm group text-center h-full">
+                    <div class="inline-flex p-4 rounded-full bg-stone-50 text-amber-700 mb-6 group-hover:bg-red-900 group-hover:text-white transition-colors">
+                        <i data-lucide="heart" class="w-7 h-7" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-stone-800 mb-3">Ethical</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm">Fair trade practices that support local Nepalese communities.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm group text-center h-full">
+                    <div class="inline-flex p-4 rounded-full bg-stone-50 text-amber-700 mb-6 group-hover:bg-red-900 group-hover:text-white transition-colors">
+                        <i data-lucide="truck" class="w-7 h-7" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-stone-800 mb-3">Delivery</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm">Free delivery across Australia. Reliable shipping worldwide.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm group text-center h-full">
+                    <div class="inline-flex p-4 rounded-full bg-stone-50 text-amber-700 mb-6 group-hover:bg-red-900 group-hover:text-white transition-colors">
+                        <i data-lucide="star" class="w-7 h-7" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-stone-800 mb-3">Quality</h3>
+                    <p class="text-stone-600 leading-relaxed text-sm">Premium materials chosen for their durability and spiritual resonance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SIGNATURE COLLECTIONS -->
+    <section id="collections" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="mb-12 text-center">
+                <span class="block text-xs font-bold tracking-[0.2em] uppercase mb-3 text-amber-700">Curated for the Soul</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-stone-800">Signature Collections</h2>
+                <div class="mt-4 h-1 w-16 bg-amber-600 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+                <!-- Collection Items -->
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/Sacred-Statues.png" alt="Sacred Statues" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Sacred Statues</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Bronze, copper, and gold-plated deities crafted with strict iconometric precision.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/Singing-Bowls.jpg" alt="Singing Bowls" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Singing Bowls</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Hand-hammered 7-metal bowls for healing, meditation, and sound therapy.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/tibetan-bells-tingsha.jpg" alt="Tibetan Bells & Tingsha" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Tibetan Bells & Tingsha</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Ritual instruments producing pure, resonant tones for mindfulness.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/Thangka-Art.jpg" alt="Thangka Art" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Thangka Art</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Intricate Paubha and Thangka paintings depicting mandalas and deities.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/Bodhi-Malas.webp" alt="Bodhi Malas" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Bodhi Malas</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Prayer beads made from Bodhi seeds, sandalwood, and semi-precious stones.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden h-96 w-full bg-stone-100 cursor-pointer">
+                    <img src="img/Ritual-Altar.jpg" alt="Ritual & Altar" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-2xl font-serif mb-2">Ritual & Altar</h3>
+                        <p class="text-stone-300 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Butter lamps, offering bowls, Bumpas, and incense burners.</p>
+                        <!-- <span class="inline-block text-xs font-bold tracking-widest uppercase border-b border-amber-500 pb-1 text-amber-500">View Collection</span> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 transition-all duration-300 font-serif tracking-wider text-sm uppercase bg-red-900 text-stone-50 hover:bg-red-800 border border-transparent shadow-md hover:shadow-lg">
+                    Contact for More Collections
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ABOUT SECTION -->
+    <section id="our-story" class="py-24 bg-stone-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-amber-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute bottom-0 right-0 w-32 h-32 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                    
+                    <img src="img/artisan.jpg" alt="Artisan hands" class="relative rounded-sm shadow-2xl z-10 w-full object-cover">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 shadow-xl z-20 max-w-xs hidden md:block">
+                        <p class="font-serif italic text-stone-600 text-lg">"Every piece tells a story of devotion and skill."</p>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <span class="text-amber-600 font-bold tracking-widest text-xs uppercase mb-2 block">Our Heritage</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-stone-800 mb-6 leading-tight">
+                        Bridging the Himalayas <br> to the World
+                    </h2>
+                    <div class="space-y-4 text-stone-600 leading-relaxed text-lg">
+                        <p>Kathmandu Crafts was born from a deep reverence for the sacred art of Nepal. We are more than a store; we are a bridge connecting the master artisans of the Kathmandu Valley with spiritual seekers around the globe.</p>
+                        <p>Based in Australia, we partner directly with traditional crafting families, ensuring that every purchase supports the preservation of cultural heritage and provides fair livelihoods.</p>
+                        <p>When you hold one of our singing bowls or gaze upon a statue, you are connecting with a lineage of devotion that spans centuries.</p>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-stone-300">
+                         <div class="flex gap-12">
+                           <div>
+                             <span class="block text-3xl font-serif text-red-900">100%</span>
+                             <span class="text-sm uppercase tracking-wide text-stone-500">Handmade</span>
+                           </div>
+                           <!-- <div>
+                             <span class="block text-3xl font-serif text-red-900">Fair</span>
+                             <span class="text-sm uppercase tracking-wide text-stone-500">Trade</span>
+                           </div> -->
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PERFECT FOR SECTION -->
+    <section class="py-20 bg-stone-800 text-stone-100">
+        <div class="container mx-auto px-6">
+            <div class="mb-12 text-center">
+                <span class="block text-xs font-bold tracking-[0.2em] uppercase mb-3 text-amber-400">Curated for Your Path</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white">Perfect For...</h2>
+                <div class="mt-4 h-1 w-16 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="sun" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Meditation</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="gem" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Home Altars</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="heart" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Yoga Studios</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="star" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Ceremonies</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="check" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Gifting</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 group p-4 hover:bg-white/5 rounded-lg transition-colors cursor-default">
+                    <div class="p-4 rounded-full bg-stone-700 text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                    <span class="font-serif tracking-wide text-sm">Collectors</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. DELIVERY & SHIPPING -->
+    <section class="py-16 bg-amber-50 border-b border-amber-100">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-amber-100 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="flex-1">
+                    <h3 class="text-2xl font-serif text-stone-800 mb-3">Safe & Respectful Delivery</h3>
+                    <p class="text-stone-600 mb-2">We treat every sacred item with the reverence it deserves.</p>
+                    <ul class="space-y-2 text-stone-500 mt-4">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Free delivery across Australia</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Secure Worldwide Shipping</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Eco-friendly, protective packaging</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0">
+                    <i data-lucide="truck" class="w-16 h-16 text-amber-200 mb-4 mx-auto md:mx-0"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. BRAND PROMISE -->
+    <section class="py-24 bg-white text-center">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-serif text-stone-800 mb-8">Our Promise to You</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div>
+                    <h4 class="font-serif text-lg text-red-900 mb-2">Authentic Craftsmanship</h4>
+                    <p class="text-stone-600 text-sm leading-relaxed">We guarantee that every item is handcrafted in Nepal, respecting traditional methods and iconography. No mass production, only soulful creation.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg text-red-900 mb-2">Cultural Respect</h4>
+                    <p class="text-stone-600 text-sm leading-relaxed">We honour the spiritual significance of these items. From sourcing to shipping, we handle your treasures with mindfulness and care.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg text-red-900 mb-2">Thoughtful Service</h4>
+                    <p class="text-stone-600 text-sm leading-relaxed">As an Australian-based team, we are here to support your journey, answering questions and ensuring a seamless experience.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg text-red-900 mb-2">Spiritual Integrity</h4>
+                    <p class="text-stone-600 text-sm leading-relaxed">We believe in the energy of objects. We ensure our sourcing is ethical so that your item arrives with positive intent and clear history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FINAL CTA -->
+    <section class="py-24 relative overflow-hidden bg-red-900">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/mandala.png')] opacity-10"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-serif text-white mb-6">Bring the Sacred Home</h2>
+            <p class="text-red-100 text-lg mb-10 max-w-2xl mx-auto">Explore our curated selection of handcrafted treasures and find the perfect piece to elevate your space and spirit.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 transition-all duration-300 font-serif tracking-wider text-sm uppercase bg-amber-600 text-white hover:bg-amber-500 border-none shadow-md">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-16 border-t border-stone-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="mb-6">
+                        <img src="img/KathmanduCrafts_Logo-white.png" alt="Kathmandu Crafts" class="h-32 w-auto" />
+                    </div>
+                    <p class="italic text-stone-500 mb-6">Inspired by Tradition. Crafted with Passion.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/Kathmandu-Crafts-61561708359611" target="_blank" rel="noopener noreferrer" class="text-white hover:text-amber-500 transition-colors w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,255.99213,255.99213" class="w-full h-full">
+                                <g fill="currentColor" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M12,2c-5.523,0 -10,4.477 -10,10c0,5.013 3.693,9.153 8.505,9.876v-7.226h-2.474v-2.629h2.474v-1.749c0,-2.896 1.411,-4.167 3.818,-4.167c1.153,0 1.762,0.085 2.051,0.124v2.294h-1.642c-1.022,0 -1.379,0.969 -1.379,2.061v1.437h2.995l-0.406,2.629h-2.588v7.247c4.881,-0.661 8.646,-4.835 8.646,-9.897c0,-5.523 -4.477,-10 -10,-10z"></path></g></g>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/Kathmanducraft" target="_blank" rel="noopener noreferrer" class="text-white hover:text-amber-500 transition-colors w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,255.99213,255.99213" class="w-full h-full">
+                                <g fill="currentColor" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M9.99805,3c-3.859,0 -6.99805,3.14195 -6.99805,7.00195v10c0,3.859 3.14195,6.99805 7.00195,6.99805h10c3.859,0 6.99805,-3.14195 6.99805,-7.00195v-10c0,-3.859 -3.14195,-6.99805 -7.00195,-6.99805zM22,7c0.552,0 1,0.448 1,1c0,0.552 -0.448,1 -1,1c-0.552,0 -1,-0.448 -1,-1c0,-0.552 0.448,-1 1,-1zM15,9c3.309,0 6,2.691 6,6c0,3.309 -2.691,6 -6,6c-3.309,0 -6,-2.691 -6,-6c0,-3.309 2.691,-6 6,-6zM15,11c-2.20914,0 -4,1.79086 -4,4c0,2.20914 1.79086,4 4,4c2.20914,0 4,-1.79086 4,-4c0,-2.20914 -1.79086,-4 -4,-4z"></path></g></g>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@kathmandu.crafts" target="_blank" rel="noopener noreferrer" class="text-white hover:text-amber-500 transition-colors w-6 h-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,255.99213,255.99213" class="w-full h-full">
+                                <g fill="currentColor" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M24,4h-18c-1.105,0 -2,0.895 -2,2v18c0,1.105 0.895,2 2,2h18c1.105,0 2,-0.895 2,-2v-18c0,-1.105 -0.896,-2 -2,-2zM22.689,13.474c-0.13,0.012 -0.261,0.02 -0.393,0.02c-1.495,0 -2.809,-0.768 -3.574,-1.931c0,3.049 0,6.519 0,6.577c0,2.685 -2.177,4.861 -4.861,4.861c-2.684,-0.001 -4.861,-2.178 -4.861,-4.862c0,-2.685 2.177,-4.861 4.861,-4.861c0.102,0 0.201,0.009 0.3,0.015v2.396c-0.1,-0.012 -0.197,-0.03 -0.3,-0.03c-1.37,0 -2.481,1.111 -2.481,2.481c0,1.37 1.11,2.481 2.481,2.481c1.371,0 2.581,-1.08 2.581,-2.45c0,-0.055 0.024,-11.17 0.024,-11.17h2.289c0.215,2.047 1.868,3.663 3.934,3.811z"></path></g></g>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div id="contact">
+                    <h4 class="text-white font-serif mb-4 uppercase text-sm tracking-widest">Contact</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber-600 mt-1"></i>
+                            <a href="https://maps.app.goo.gl/E8GPvQ2kQbKr8hWx8" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors">
+                                261 Belgravia St, Cloverdale WA 6105, Australia
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber-600"></i>
+                            <a href="tel:+61499926276" class="hover:text-amber-500 transition-colors">
+                                +61 499 926 276 (WhatsApp/Viber)
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-amber-600"></i>
+                            <a href="mailto:kathmanducrafts.au@gmail.com" class="hover:text-amber-500 transition-colors">
+                                kathmanducrafts.au@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; <span id="year"></span> Kathmandu Crafts. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Update Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navigation Scroll Logic
+        const nav = document.getElementById('main-nav');
+        const navLogoImg = document.getElementById('nav-logo-img');
+        const fallbackIconBg = document.getElementById('fallback-icon-bg');
+        const fallbackText = document.getElementById('fallback-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const shopBtn = document.getElementById('nav-shop-btn');
+
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 50;
+
+            if (isScrolled) {
+                // Nav Container Styles
+                nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'py-3');
+                nav.classList.remove('py-5', 'bg-transparent');
+                
+                // Text Colors
+                navLinks.forEach(link => {
+                    link.classList.remove('text-stone-200');
+                    link.classList.add('text-stone-600');
+                });
+                mobileMenuBtn.classList.remove('text-white');
+                mobileMenuBtn.classList.add('text-stone-800');
+
+                // Logo Fallback Colors
+                fallbackIconBg.classList.remove('bg-white', 'text-red-900');
+                fallbackIconBg.classList.add('bg-red-900', 'text-white');
+                
+                fallbackText.classList.remove('text-white');
+                fallbackText.classList.add('text-stone-900');
+
+                // Shop Button
+                shopBtn.classList.remove('bg-amber-600', 'text-white');
+                shopBtn.classList.add('bg-red-900', 'text-stone-50');
+
+                // Logo Image Logic (remove filter/shadow)
+                navLogoImg.classList.remove('drop-shadow-lg', 'filter', 'brightness-100');
+
+            } else {
+                // Revert Styles
+                nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'py-3');
+                nav.classList.add('py-5', 'bg-transparent');
+
+                navLinks.forEach(link => {
+                    link.classList.add('text-stone-200');
+                    link.classList.remove('text-stone-600');
+                });
+                mobileMenuBtn.classList.add('text-white');
+                mobileMenuBtn.classList.remove('text-stone-800');
+
+                fallbackIconBg.classList.add('bg-white', 'text-red-900');
+                fallbackIconBg.classList.remove('bg-red-900', 'text-white');
+                
+                fallbackText.classList.add('text-white');
+                fallbackText.classList.remove('text-stone-900');
+
+                shopBtn.classList.add('bg-amber-600', 'text-white');
+                shopBtn.classList.remove('bg-red-900', 'text-stone-50');
+
+                navLogoImg.classList.add('drop-shadow-lg', 'filter', 'brightness-100');
+            }
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const menuIcon = menuBtn.querySelector('i');
+
+        // Toggle Menu
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons(); // Refresh icon
+        });
+
+        // Close menu when clicking links
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+    </script>
 </body>
 </html>
