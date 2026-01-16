@@ -2,87 +2,177 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>KathmanduCrafts | Coming Soon</title>
+    <title>Kathmandu Crafts | Coming Soon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #8d6e63, #5d4037);
-            color: #ffffff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f6f2ec;
+            color: #2c2c2c;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .logo-section {
             text-align: center;
         }
 
-        .container {
-            max-width: 600px;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .logo-section img {
+            max-width: 100%;
+            height: auto;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        h1 span {
-            color: #ffcc80;
-        }
-
-        p {
+        .tagline {
+            margin-top: 20px;
             font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            color: #8a5a2b;
+            letter-spacing: 0.5px;
+        }
+
+        .content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+
+        .content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
         }
 
         .divider {
-            width: 80px;
-            height: 4px;
-            background: #ffcc80;
-            margin: 20px auto;
+            width: 70px;
+            height: 3px;
+            background: #c6923a;
+            margin: 20px 0;
             border-radius: 2px;
         }
 
-        .footer {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 30px;
+        .contact h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #000;
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2.2rem;
+        .contact ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .contact li span {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .highlight {
+            margin-top: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #c6923a;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        @media (max-width: 900px) {
+            .card {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            p {
-                font-size: 1rem;
+            .divider {
+                margin: 20px auto;
+            }
+
+            .contact li {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1><span>Kathmandu</span>Crafts</h1>
-        <div class="divider"></div>
-        <p>
-            We are crafting something beautiful.<br>
-            Our website is currently under construction and will be launching soon.
-        </p>
-        <p>
-            Stay tuned for authentic handcrafted products inspired by Nepal’s rich culture.
-        </p>
-        <div class="footer">
-            © 2026 KathmanduCrafts. All rights reserved.
+<div class="page">
+    <div class="card">
+
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <img src="eee69c74-bdc2-4ceb-ba96-ab01fe32e380.png" alt="Kathmandu Crafts Logo">
+            <div class="tagline">Inspired by Tradition, Crafted by Passion</div>
         </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <h1>Coming Soon</h1>
+            <div class="divider"></div>
+            <p>
+                We are currently building our online home to showcase authentic,
+                handcrafted creations inspired by Nepal’s rich heritage.
+                Our full website will be launching soon.
+            </p>
+
+            <div class="contact">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li><span>📞</span> +61 499 926 276 (WhatsApp / Viber)</li>
+                    <li><span>✉️</span> kathmanducrafts.au@gmail.com</li>
+                    <li><span>🌐</span> www.kathmandu-crafts.com</li>
+                    <li><span>📍</span> Kathmandu Crafts, Australia</li>
+                    <li><span>📱</span> @kathmanducrafts</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                🚚 Australia-Wide Free Delivery
+            </div>
+
+            <div class="footer">
+                © 2026 Kathmandu Crafts. All rights reserved.
+            </div>
+        </div>
+
     </div>
+</div>
 
 </body>
 </html>
